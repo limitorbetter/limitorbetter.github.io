@@ -1,41 +1,43 @@
 # Privacy Policy
 
-**Last updated: 17 May 2026**
+**Last updated: 17th May 2026**
 
-Limit or Better ("the app") is developed by Neil Christie. This policy explains what data the app handles.
+## Overview
 
-## Data we collect
+Limit or Better is designed with privacy as a default. All data you enter is stored locally on your device only. We do not collect, transmit, or share any personal information.
 
-None. The app does not collect, transmit, store, sell, or share any personal data with the developer or any third party. There is no account, no analytics, no advertising, and no cloud service.
+## Data We Store
 
-## Data stored on your device
+The following data is stored in a local database on your device:
 
-The app stores the following information locally on your device:
+- Workout sessions, exercises, sets, reps, and weights
+- Run logs including distance, duration, and run type
+- Personal measurements (height, weight, waist, neck, date of birth, sex)
+- Notebook text
+- App preferences
 
-- Workouts you log (sets, reps, weights, exercises)
-- Runs you log (distance, duration, pace, optional GPS data)
-- Body measurements you enter
-- Notes you write in the training notebook
-- App preferences and settings
+## Data We Do Not Collect
 
-This data never leaves your device.
+We do not collect:
 
-## Location data
+- Your name, email address, or any contact information
+- Location data
+- Device identifiers
+- Usage analytics or crash reports
+- Any data transmitted to our servers — because we have none
 
-If you choose to enable GPS for a run, the app accesses your device's location services to calculate distance and pace during that run. Location data is stored on your device with your other run data and is never transmitted anywhere. You can disable GPS at any time and log runs manually.
+## Third-Party Services
 
-## Children
+This app does not integrate with any third-party analytics, advertising, or data services. It does not connect to the internet during normal use.
 
-The app is rated 4+ and does not collect data from any user, including children.
+## Data Deletion
 
-## Third parties
+All your data is deleted when you uninstall the app. There is no account to delete and no server-side data to request removal of.
 
-The app does not include any third-party SDKs, trackers, advertising networks, or analytics services.
+## Medical Disclaimer
 
-## Changes to this policy
-
-If this policy changes, the "Last updated" date above will change. Continued use of the app after changes constitutes acceptance.
+This app is for informational and personal tracking purposes only. Nothing in this app constitutes medical advice, diagnosis, or treatment. Always consult a qualified medical professional before making health or fitness decisions.
 
 ## Contact
 
-Questions? Open an issue at [github.com/limitorbetter](https://github.com/limitorbetter).
+If you have any questions about this policy, contact us at **privacy@invisivox.com**.
