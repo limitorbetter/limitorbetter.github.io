@@ -40,4 +40,4 @@ This app is for informational and personal tracking purposes only. Nothing in th
 
 ## Contact
 
-If you have any questions about this policy, contact us at **privacy@invisivox.com**.
+If you have any questions about this policy, [open an issue on the repo](https://github.com/limitorbetter/limitorbetter.github.io/issues).
