@@ -3,100 +3,743 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Limit or Better — Support</title>
+<title>Limit or Better — Train. Track. Transform.</title>
+<meta name="description" content="Track your lifts, log your runs, watch your body recover. Limit or Better is a training app for people who take fitness seriously. iOS only. No account required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-  body {
-    background: #111;
-    color: #e5e5e5;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-  }
-  h1 {
-    color: #fff;
-    font-size: 32px;
-    margin-bottom: 4px;
-  }
-  h2 {
-    color: #f97316;
-    font-size: 18px;
-    margin-top: 40px;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .tagline {
-    color: #9ca3af;
-    font-size: 16px;
-    margin-bottom: 40px;
-  }
-  a {
-    color: #f97316;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  hr {
-    border: none;
-    border-top: 1px solid #2a2a2a;
-    margin: 40px 0;
-  }
-  p, li {
-    color: #c5c5c5;
-  }
-  .faq-q {
-    color: #fff;
-    font-weight: 600;
-    margin-top: 20px;
-    margin-bottom: 4px;
-  }
-  footer {
-    color: #6b7280;
-    font-size: 13px;
-    margin-top: 60px;
-    text-align: center;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080808;
+  --bg2: #101010;
+  --bg3: #161616;
+  --orange: #f97316;
+  --orange-glow: rgba(249,115,22,0.12);
+  --white: #ffffff;
+  --off-white: #e8e8e8;
+  --muted: #666;
+  --border: #1c1c1c;
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--off-white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+nav.scrolled { border-bottom-color: var(--border); }
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-chevrons { color: var(--orange); letter-spacing: -2px; }
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-chevron {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(240px, 28vw, 420px);
+  color: rgba(249,115,22,0.035);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: center;
+  gap: 60px;
+}
+
+.hero-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-label::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(72px, 10vw, 136px);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.hero-title .accent { color: var(--orange); display: block; }
+
+.hero-tagline {
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 48px;
+  max-width: 440px;
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--orange);
+  color: #000;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(249,115,22,0.35);
+}
+
+.hero-meta {
+  font-size: 13px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-meta::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #222;
+  border-radius: 50%;
+}
+
+.hero-screenshot img {
+  width: 100%;
+  border-radius: 28px;
+  border: 1px solid #1a1a1a;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03);
+  transform: rotate(2deg);
+  transition: transform 0.6s ease;
+  display: block;
+}
+
+.hero-screenshot:hover img { transform: rotate(0deg); }
+
+/* SCREENSHOTS */
+.section-screenshots {
+  padding: 100px 0 80px;
+  overflow: hidden;
+}
+
+.section-eyebrow {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+  padding: 0 40px;
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 5.5vw, 72px);
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 0.95;
+  padding: 0 40px;
+  margin-bottom: 52px;
+}
+
+.screenshots-strip {
+  display: flex;
+  gap: 20px;
+  padding: 16px 40px 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+
+.screenshots-strip::-webkit-scrollbar { display: none; }
+.screenshots-strip.grabbing { cursor: grabbing; user-select: none; }
+
+.ss-card {
+  flex: 0 0 auto;
+  width: 210px;
+}
+
+.ss-card img {
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  display: block;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+}
+
+.ss-card:hover img {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 40px 64px rgba(0,0,0,0.55), 0 0 24px rgba(249,115,22,0.08);
+}
+
+.ss-label {
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* FEATURES */
+.section-features {
+  padding: 80px 40px 100px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 56px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.feature-item {
+  background: var(--bg2);
+  padding: 36px 32px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.feature-item:hover { background: var(--bg3); }
+.feature-item:nth-child(3n) { border-right: none; }
+.feature-item:nth-last-child(-n+3) { border-bottom: none; }
+
+.feature-icon { font-size: 26px; margin-bottom: 18px; display: block; }
+
+.feature-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.feature-body {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* PRIVACY CALLOUT */
+.section-private {
+  padding: 64px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 100px;
+}
+
+.section-private::after {
+  content: '›';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 320px;
+  color: rgba(249,115,22,0.035);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.private-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.private-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+
+.private-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4.5vw, 60px);
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.0;
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+
+.private-body {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 580px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.private-body a { color: var(--orange); text-decoration: none; }
+.private-body a:hover { text-decoration: underline; }
+
+/* SUPPORT / FAQ */
+.section-support {
+  padding: 80px 40px 100px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  margin-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+
+.faq-q {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.faq-q::before {
+  content: '›';
+  color: var(--orange);
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.faq-a {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+  padding-left: 26px;
+}
+
+.support-box {
+  margin-top: 52px;
+  padding: 32px 36px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.support-box-text strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.support-box-text span {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-outline:hover { background: var(--orange); color: #000; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.footer-logo .ch { color: var(--orange); }
+
+.footer-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--white); }
+
+.footer-copy { font-size: 13px; color: #282828; }
+
+/* SCROLL ANIMATIONS */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-screenshot { width: 200px; margin: 0 auto; }
+  .hero-screenshot img { transform: none; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .feature-item:nth-child(3n) { border-right: 1px solid var(--border); }
+  .feature-item:nth-child(2n) { border-right: none; }
+  .feature-item:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+  .feature-item:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+@media (max-width: 560px) {
+  nav { padding: 16px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .section-eyebrow, .section-heading { padding: 0 20px; }
+  .screenshots-strip { padding: 16px 20px 32px; }
+  .section-features { padding: 60px 20px 80px; }
+  .section-private { padding: 44px 24px; }
+  .section-support { padding: 60px 20px 80px; }
+  footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-item { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+  .feature-item:last-child { border-bottom: none !important; }
+  .support-box { flex-direction: column; align-items: flex-start; }
+}
 </style>
 </head>
 <body>
 
-<h1>Limit or Better</h1>
-<p class="tagline">A training app for people who lift, run, or both.<br>
-Sets, reps, runs, recovery — all on your device.</p>
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <span class="nav-chevrons">›››</span>
+    LIMIT OR BETTER
+  </a>
+  <a href="https://apps.apple.com/app/limit-or-better/id6769979215" class="nav-cta">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    App Store
+  </a>
+</nav>
 
-<hr>
+<section class="hero">
+  <div class="hero-bg-chevron" aria-hidden="true">›</div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="hero-label">iOS App</p>
+      <h1 class="hero-title">
+        Limit<span class="accent">Or Better</span>
+      </h1>
+      <p class="hero-tagline">Track your lifts. Log your runs. See your body recover. Everything stays on your device — no account, no cloud, no noise.</p>
+      <div class="hero-actions">
+        <a href="https://apps.apple.com/app/limit-or-better/id6769979215" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on the App Store
+        </a>
+        <span class="hero-meta">Free · iOS only</span>
+      </div>
+    </div>
+    <div class="hero-screenshot">
+      <img src="screenshots/logging.png" alt="Logging a workout in Limit or Better" loading="eager">
+    </div>
+  </div>
+</section>
 
-<h2>Support</h2>
-<p>If you have a question, bug report, or feature suggestion, <a href="https://github.com/limitorbetter/limitorbetter.github.io/issues">open an issue on the repo</a>.</p>
-<p>I'm a solo developer and I read every message. Replies may take a few days.</p>
+<section class="section-screenshots">
+  <p class="section-eyebrow">Inside the app</p>
+  <h2 class="section-heading">Every session.<br>Every run.</h2>
+  <div class="screenshots-strip" id="screenshotStrip">
+    <div class="ss-card">
+      <img src="screenshots/home.png" alt="Home screen" loading="lazy">
+      <p class="ss-label">Home</p>
+    </div>
+    <div class="ss-card">
+      <img src="screenshots/bodymap.png" alt="Body fatigue map" loading="lazy">
+      <p class="ss-label">Body Map</p>
+    </div>
+    <div class="ss-card">
+      <img src="screenshots/logging.png" alt="Active workout" loading="lazy">
+      <p class="ss-label">Logging</p>
+    </div>
+    <div class="ss-card">
+      <img src="screenshots/logbook.png" alt="Logbook history" loading="lazy">
+      <p class="ss-label">Logbook</p>
+    </div>
+    <div class="ss-card">
+      <img src="screenshots/progress.png" alt="Progress charts" loading="lazy">
+      <p class="ss-label">Progress</p>
+    </div>
+  </div>
+</section>
 
-<hr>
+<section class="section-features">
+  <p class="section-eyebrow">What's included</p>
+  <h2 class="section-heading">Built for<br>serious training</h2>
+  <div class="features-grid">
+    <div class="feature-item fade-up">
+      <span class="feature-icon">🏋️</span>
+      <h3 class="feature-title">Lift Tracking</h3>
+      <p class="feature-body">Log sets, reps, and weight. Your last session is always shown — so you always know what to beat.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <span class="feature-icon">🏃</span>
+      <h3 class="feature-title">Run Tracking</h3>
+      <p class="feature-body">GPS or manual logging. Pace, personal bests, and all-time totals. Lifters who run are covered too.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <span class="feature-icon">🔥</span>
+      <h3 class="feature-title">Body Fatigue Map</h3>
+      <p class="feature-body">An EMG-researched muscle model lights up what's fatigued and shows what's ready to train.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <span class="feature-icon">📈</span>
+      <h3 class="feature-title">Progress Charts</h3>
+      <p class="feature-body">Volume over time per exercise with estimated 1RM. Watch the numbers go up over months.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <span class="feature-icon">⚡</span>
+      <h3 class="feature-title">Templates</h3>
+      <p class="feature-body">Save your Push/Pull/Leg days and start a session in one tap. No setup every time you train.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <span class="feature-icon">💪</span>
+      <h3 class="feature-title">100+ Exercises</h3>
+      <p class="feature-body">Organised by muscle group with full EMG data. Add custom exercises for anything not in the library.</p>
+    </div>
+  </div>
+</section>
 
-<h2>Privacy</h2>
-<p>Limit or Better stores all your training data on your device. The app does not collect, transmit, or sync any personal data. There is no account, no cloud, and no analytics.</p>
-<p>If you enable GPS for run tracking, your location is used only during the run to calculate distance and pace. It is stored on your device and never transmitted anywhere.</p>
-<p>You can read the <a href="privacy.html">full privacy policy here</a>.</p>
+<div class="section-private fade-up">
+  <div class="private-inner">
+    <p class="private-eyebrow">Privacy</p>
+    <h2 class="private-headline">Your data stays on your device. Always.</h2>
+    <p class="private-body">No account. No cloud. No analytics. Limit or Better stores everything in a local database — if you delete the app, the data goes with it. If you enable GPS for runs, your location never leaves your phone. <a href="privacy.html">Read the full privacy policy →</a></p>
+  </div>
+</div>
 
-<hr>
+<section class="section-support">
+  <p class="section-eyebrow">Support</p>
+  <h2 class="section-heading">FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item fade-up">
+      <p class="faq-q">Where is my data stored?</p>
+      <p class="faq-a">On your device only. If you delete the app, your data is deleted with it. Back up your phone to keep a copy.</p>
+    </div>
+    <div class="faq-item fade-up">
+      <p class="faq-q">Can I sync between devices?</p>
+      <p class="faq-a">Not currently. The app has no cloud component by design.</p>
+    </div>
+    <div class="faq-item fade-up">
+      <p class="faq-q">Will there be an Android version?</p>
+      <p class="faq-a">Yes, that's the plan next.</p>
+    </div>
+    <div class="faq-item fade-up">
+      <p class="faq-q">How do I export my data?</p>
+      <p class="faq-a">You can export to CSV from the Me page.</p>
+    </div>
+  </div>
+  <div class="support-box fade-up">
+    <div class="support-box-text">
+      <strong>Got a question or found a bug?</strong>
+      <span>Solo developer — I read every message. Replies within a few days.</span>
+    </div>
+    <a href="https://github.com/limitorbetter/limitorbetter.github.io/issues" class="btn-outline">Open an issue →</a>
+  </div>
+</section>
 
-<h2>Frequently Asked Questions</h2>
+<footer>
+  <a href="/" class="footer-logo"><span class="ch">››› </span>LIMIT OR BETTER</a>
+  <ul class="footer-links">
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="https://github.com/limitorbetter/limitorbetter.github.io/issues">Support</a></li>
+    <li><a href="https://apps.apple.com/app/limit-or-better/id6769979215">App Store</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Limit or Better</span>
+</footer>
 
-<p class="faq-q">Where is my data stored?</p>
-<p>On your device only. If you delete the app, your data is deleted with it. Back up your phone to keep a copy.</p>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
 
-<p class="faq-q">Can I sync between devices?</p>
-<p>Not currently. The app has no cloud component by design.</p>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-<p class="faq-q">Will there be an Android version?</p>
-<p>Yes, that's the plan next.</p>
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-<p class="faq-q">How do I export my data?</p>
-<p>You can export to CSV from the Me page.</p>
-
-<footer>Limit or Better  © 2026</footer>
-
+const strip = document.getElementById('screenshotStrip');
+let isDown = false, startX, scrollLeft;
+strip.addEventListener('mousedown', e => { isDown = true; strip.classList.add('grabbing'); startX = e.pageX - strip.offsetLeft; scrollLeft = strip.scrollLeft; });
+strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('grabbing'); });
+strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('grabbing'); });
+strip.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX) * 1.5; });
+</script>
 </body>
 </html>
